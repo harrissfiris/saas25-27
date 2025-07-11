@@ -114,23 +114,6 @@ services:
       - clearsky-network
     restart: unless-stopped
 
-  # --- API Gateway ---
-  krakend:
-    image: devopsfaith/krakend:2.7
-    container_name: krakend_api_gateway
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./krakend-api-gateway/krakend.json:/etc/krakend/krakend.json:ro
-    depends_on:
-      - review-service
-      - institution-credit-service
-      - grade-service
-      - review-orchestrator
-      # Add other backend services here as they are created
-    networks:
-      - clearsky-network
-
   notification-service:
     build: ./notification-service
     container_name: notification-service
